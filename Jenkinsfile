@@ -6,7 +6,6 @@ pipeline {
             steps {        
                 echo 'Build'
                 echo 'Test'  
-                echo "${myVar}"   
                 sh 'echo KRCARD > myfile.txt'
                 script {
                     myVar = readFile('myfile.txt')
