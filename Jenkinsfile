@@ -9,9 +9,9 @@ pipeline {
                 var = "KRCARD"                     
             }
         }        
-        stage('QA') {
-            timeout(time: 2, unit: 'MINUTES')
+        stage('QA') {          
             steps {
+                timeout(time: 2, unit: 'MINUTES')
                 input('Do you want to proceed?')
                 echo 'Build'
                 echo 'Test'
