@@ -11,7 +11,9 @@ pipeline {
         stage('QA') {          
             steps {
                 timeout(time: 10, unit: 'MINUTES')
+                {
                 input('Do you want to proceed?')
+                }
                 echo 'Build'
                 echo 'Test'
             }
