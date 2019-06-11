@@ -3,11 +3,7 @@ pipeline {
 
     stages {
         stage('Build') {
-            steps {
-                echo 'Build'
-                echo 'Test'                
-            }
-            steps {
+            steps {                
                 input('Do you want to proceed?')
             }
         }        
