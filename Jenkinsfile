@@ -7,7 +7,10 @@ pipeline {
             steps {        
                 echo 'Build'
                 echo 'Test'  
-                echo "${myVar}"                    
+                echo "${myVar}"   
+                sh 'echo KRCARD > myfile.txt'
+                echo "${myVar}"
+
             }
         }        
         stage('QA') {          
@@ -18,6 +21,7 @@ pipeline {
                 }
                 echo 'Build'
                 echo 'Test'
+                echo "${myVar}"
             }
         }
         stage('Stage') {
