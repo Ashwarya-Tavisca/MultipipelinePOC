@@ -9,6 +9,7 @@ pipeline {
                 echo 'Test'  
                 echo "${myVar}"   
                 sh 'echo KRCARD > myfile.txt'
+                myVar=readFile('myfile.txt')
                 echo "${myVar}"
 
             }
