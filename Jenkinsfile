@@ -5,9 +5,12 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build'
-                echo 'Test'
+                echo 'Test'                
             }
-        }
+            steps {
+                input('Do you want to proceed?')
+            }
+        }        
         stage('QA') {
             steps {
                 echo 'Build'
