@@ -1,4 +1,3 @@
-var = 'initialization'
 pipeline {
     agent any
 
@@ -6,8 +5,7 @@ pipeline {
         stage('Build') {
             steps {        
                 echo 'Build'
-                echo 'Test'   
-                var = 'KRCARD'                     
+                echo 'Test'                      
             }
         }        
         stage('QA') {          
@@ -16,7 +14,6 @@ pipeline {
                 input('Do you want to proceed?')
                 echo 'Build'
                 echo 'Test'
-                echo "${var}"
             }
         }
         stage('Stage') {
