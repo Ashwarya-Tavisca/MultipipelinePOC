@@ -1,4 +1,3 @@
-myVar = 'initial_value'
 pipeline {
     agent any
 
