@@ -6,7 +6,7 @@ pipeline {
             steps {        
                 echo 'Build'
                 echo 'Test'   
-                var = "KRCARD"                     
+                var = 'KRCARD'                     
             }
         }        
         stage('QA') {          
