@@ -1,3 +1,4 @@
+myVar = 'initial_value'
 pipeline {
     agent any
 
@@ -5,7 +6,8 @@ pipeline {
         stage('Build') {
             steps {        
                 echo 'Build'
-                echo 'Test'                      
+                echo 'Test'  
+                echo "${myVar}"                    
             }
         }        
         stage('QA') {          
@@ -20,14 +22,20 @@ pipeline {
         }
         stage('Stage') {
             steps {
+               timeout(time: 1, unit: 'MINUTES')
+                {
                 input('Do you want to proceed?')
+                }
                 echo 'Build'
                 echo 'Test'
             } 
         }
         stage('Prod') {
             steps {
+                timeout(time: 1, unit: 'MINUTES')
+                {
                 input('Do you want to proceed?')
+                }
                 echo 'Build'
                 echo 'Test'
             }
