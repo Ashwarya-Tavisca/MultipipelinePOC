@@ -1,3 +1,4 @@
+var = 'initialization'
 pipeline {
     agent any
 
