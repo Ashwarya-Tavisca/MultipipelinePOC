@@ -6,15 +6,9 @@ pipeline {
             steps {        
                 echo 'Build'
                 echo 'Test' 
-                sh "mkdir output"
-                sh "echo ${env.BUILD_ID} > ${env.WORKSPACE}/output/myfile.txt"
-                echo "${env.WORKSPACE}"
-                sh "ls ${env.WORKSPACE}/output"
-                stash includes: "output/myfile.txt", name: "data"                 
-                script {
-                    myVar = readFile('myfile.txt')
-                }
-                echo "${myVar}"
+                sh "echo ${env.BUILD_ID} > ${env.WORKSPACE}/myfile.txt"
+                stash includes: "*.txt", name: "data"
+                echo "cat ${env.WORKSPACE}/myfile.txt"
             }
         }        
         stage('QA') {          
@@ -25,7 +19,7 @@ pipeline {
                 }
                 echo 'Build'
                 echo 'Test'
-                unstash 'data' 
+                unstash 'data'
                 script {                
                 myVar = readFile('output/myfile.txt')
                 }
