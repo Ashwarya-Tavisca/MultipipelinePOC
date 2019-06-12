@@ -6,7 +6,7 @@ pipeline {
             steps {        
                 echo 'Build'
                 echo 'Test'  
-                sh '${env.BUILD_ID} > myfile.txt'
+                sh 'echo ${env.BUILD_ID} > myfile.txt'
                 script {
                     myVar = readFile('myfile.txt')
                 }
