@@ -20,8 +20,9 @@ pipeline {
                 echo 'Build'
                 echo 'Test'
                 unstash 'data'
+                sh "ls"
                 script {                
-                myVar = readFile('output/myfile.txt')
+                myVar = readFile('myfile.txt')
                 }
                 echo "${myVar}"
             }
