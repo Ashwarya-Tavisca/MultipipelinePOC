@@ -7,7 +7,8 @@ pipeline {
                 echo 'Build'
                 echo 'Test' 
                 sh "echo ${env.BUILD_ID} > ${env.WORKSPACE}/myfile.txt"
-                echo `ls "${env.WORKSPACE}"`
+                echo "${env.WORKSPACE}"
+                ls "${env.WORKSPACE}"
                 stash allowEmpty: true, includes: "${env.WORKSPACE}/myfile.txt", name: "data"                 
                 script {
                     myVar = readFile('myfile.txt')
@@ -24,7 +25,7 @@ pipeline {
                 echo 'Build'
                 echo 'Test'
                 unstash 'data' 
-                cat 'myfile.txt'
+                echo  `readFile('myfile.txt')`
                 script {                
                 myVar = readFile('myfile.txt')
                 }
