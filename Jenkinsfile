@@ -3,8 +3,8 @@ pipeline {
 
     stages {
         stage('Build') {
-            steps {
-                cleanWS()
+            steps {                
+                cleanWs()
                 echo 'Build'
                 //sh "mkdir /opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}"
                 sh "echo ${env.BUILD_ID} > test1.txt"
