@@ -5,13 +5,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build'
-                sh "mkdir /opt/jenkins/workspace/Kubernetes-DevOps/stash"
-                sh "echo ${env.BUILD_ID} > /opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}.txt"
+                sh "mkdir /opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}"
+                sh "echo ${env.BUILD_ID} > /opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}/myfile.txt"
                 //stash includes: "/opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}.txt", name: "data"
-                sh "cd /opt/jenkins/workspace/Kubernetes-DevOps/stash/"
-                stash includes: "${env.BUILD_ID}.txt", name: "data"
+                sh "cd /opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}"
+                stash includes: "*.txt", name: "data"
                 sh "cd ${env.WORKSPACE}"
-                echo "cat /opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}.txt"
+                echo "cat /opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}/myfile.txt"
             }
        
         }        
@@ -25,7 +25,7 @@ pipeline {
                 echo 'Test'
                 unstash 'data'
                 script {                
-                myVar = readFile("/opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}.txt")
+                myVar = readFile("/opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}/myfile.txt")
                 }
                 echo "${myVar}"
             }
