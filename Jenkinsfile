@@ -24,6 +24,8 @@ pipeline {
                 echo 'Build'
                 echo 'Test'
                 unstash 'data'
+                sh "pwd"
+                sh "ls"
                 script {                
                 myVar = readFile("test1.txt")
                 }
