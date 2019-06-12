@@ -5,10 +5,9 @@ pipeline {
         stage('Build') {
             steps {
                 cleanWs()
-                sh "ls ${env.WORKSPACE}"
                 echo 'Build'
                 echo 'Test' 
-                sh "echo ${env.BUILD_ID} > ${env.WORKSPACE}/myfile.txt"
+                sh "echo ${env.BUILD_ID} > ${env.WORKSPACE}/${env.BUILD_ID}.txt"
                 stash includes: "*.txt", name: "data"
                 echo "cat ${env.WORKSPACE}/myfile.txt"
             }
@@ -24,7 +23,7 @@ pipeline {
                 unstash 'data'
                 sh "ls"
                 script {                
-                myVar = readFile('myfile.txt')
+                myVar = readFile("${env.BUILD_ID}.txt")
                 }
                 echo "${myVar}"
             }
