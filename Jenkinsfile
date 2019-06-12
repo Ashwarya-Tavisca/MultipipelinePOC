@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 cleanWs()
+                sh "ls ${env.WORKSPACE}"
                 echo 'Build'
                 echo 'Test' 
                 sh "echo ${env.BUILD_ID} > ${env.WORKSPACE}/myfile.txt"
