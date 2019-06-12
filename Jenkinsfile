@@ -8,10 +8,7 @@ pipeline {
                 echo 'Test' 
                 sh "echo ${env.BUILD_ID} > ${env.WORKSPACE}/myfile.txt"
                 echo "${env.WORKSPACE}"
-                script {
-                    files = findFiles(glob: '*.*')
-                }
-                echo "${Files}"
+                sh "ls ${env.WORKSPACE}"
                 stash allowEmpty: true, includes: "${env.WORKSPACE}/myfile.txt", name: "data"                 
                 script {
                     myVar = readFile('myfile.txt')
