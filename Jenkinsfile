@@ -25,7 +25,6 @@ pipeline {
                 echo 'Build'
                 echo 'Test'
                 unstash 'data' 
-                echo  `readFile('myfile.txt')`
                 script {                
                 myVar = readFile('myfile.txt')
                 }
