@@ -9,7 +9,7 @@ pipeline {
                 sh "mkdir output"
                 sh "echo ${env.BUILD_ID} > ${env.WORKSPACE}/output/myfile.txt"
                 echo "${env.WORKSPACE}"
-                sh "ls ${env.WORKSPACE}"
+                sh "ls ${env.WORKSPACE}/output"
                 stash includes: "output/myfile.txt", name: "data"                 
                 script {
                     myVar = readFile('myfile.txt')
