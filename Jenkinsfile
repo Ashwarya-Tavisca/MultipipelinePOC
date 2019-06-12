@@ -26,7 +26,7 @@ pipeline {
                 echo 'Test'
                 sh "ls /opt/jenkins/workspace/Kubernetes-DevOps/stash/"
                 sh "cd /opt/jenkins/workspace/Kubernetes-DevOps/stash/"    
-                sh "rmdir /opt/jenkins/workspace/Kubernetes-DevOps/stash/"
+                sh "rm -rf /opt/jenkins/workspace/Kubernetes-DevOps/stash/"
                 unstash 'data'
                 sh "pwd"
                 sh "ls"
