@@ -21,7 +21,9 @@ pipeline {
                 }
                 echo 'Build'
                 echo 'Test'
+                script {                
                 myVar = readFile('myfile.txt')
+                }
                 echo "${myVar}"
             }
         }
