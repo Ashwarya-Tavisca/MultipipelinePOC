@@ -7,9 +7,13 @@ pipeline {
                 echo 'Build'
                 sh "mkdir /opt/jenkins/workspace/Kubernetes-DevOps/stash"
                 sh "echo ${env.BUILD_ID} > /opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}.txt"
-                stash includes: "/opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}.txt", name: "data"
+                //stash includes: "/opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}.txt", name: "data"
+                sh "cd /opt/jenkins/workspace/Kubernetes-DevOps/stash/"
+                stash includes: "${env.BUILD_ID}.txt", name: "data"
+                sh "cd ${env.WORKSPACE}"
                 echo "cat /opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}.txt"
             }
+       
         }        
         stage('QA') {          
             steps {
@@ -26,6 +30,8 @@ pipeline {
                 echo "${myVar}"
             }
         }
+       
+      
         stage('Stage') {
             steps {
                timeout(time: 1, unit: 'MINUTES')
