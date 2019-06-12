@@ -6,10 +6,11 @@ pipeline {
             steps {        
                 echo 'Build'
                 echo 'Test' 
-                sh "echo ${env.BUILD_ID} > ${env.WORKSPACE}/myfile.txt"
+                sh "mkdir output"
+                sh "echo ${env.BUILD_ID} > ${env.WORKSPACE}/output/myfile.txt"
                 echo "${env.WORKSPACE}"
                 sh "ls ${env.WORKSPACE}"
-                stash allowEmpty: true, includes: "${env.WORKSPACE}/myfile.txt", name: "data"                 
+                stash includes: "output/myfile.txt", name: "data"                 
                 script {
                     myVar = readFile('myfile.txt')
                 }
@@ -26,7 +27,7 @@ pipeline {
                 echo 'Test'
                 unstash 'data' 
                 script {                
-                myVar = readFile('myfile.txt')
+                myVar = readFile('output/myfile.txt')
                 }
                 echo "${myVar}"
             }
