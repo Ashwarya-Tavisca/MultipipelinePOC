@@ -6,8 +6,8 @@ pipeline {
             steps {        
                 echo 'Build'
                 echo 'Test' 
-                sh "echo ${env.BUILD_ID} > myfile.txt"
-                stash includes: '**/${WORKSPACE}/*.txt', name: 'app'                 
+                sh "echo ${env.BUILD_ID} > ${env.WORKSPACE}/myfile.txt"
+                stash "includes: ${env.WORKSPACE}/*.txt', name: 'app'"                 
                 script {
                     myVar = readFile('myfile.txt')
                 }
