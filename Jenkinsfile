@@ -4,12 +4,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                cleanWS()
                 echo 'Build'
                 //sh "mkdir /opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}"
-                sh "echo ${env.BUILD_ID} > /opt/jenkins/workspace/Kubernetes-DevOps/stash/test1.txt"
+                sh "echo ${env.BUILD_ID} > test1.txt"
                 //stash includes: "/opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}.txt", name: "data"
-                sh "cd /opt/jenkins/workspace/Kubernetes-DevOps/stash/"
-                stash includes: "*.txt", name: "data"
+                //sh "cd /opt/jenkins/workspace/Kubernetes-DevOps/stash/"
+                stash includes: "test1.txt", name: "data"
                 sh "cd ${env.WORKSPACE}"
                 echo "cat /opt/jenkins/workspace/Kubernetes-DevOps/stash/test1.txt"
             }
