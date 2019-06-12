@@ -5,10 +5,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build'
-                echo 'Test' 
-                sh "echo ${env.BUILD_ID} > ${env.WORKSPACE}/${env.BUILD_ID}.txt"
-                stash includes: "*.txt", name: "data"
-                echo "cat ${env.WORKSPACE}/myfile.txt"
+                sh "mkdir /opt/jenkins/workspace/Kubernetes-DevOps/stash"
+                sh "echo ${env.BUILD_ID} > /opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}.txt"
+                stash includes: "/opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}.txt", name: "data"
+                echo "cat /opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}.txt"
             }
         }        
         stage('QA') {          
@@ -20,9 +20,8 @@ pipeline {
                 echo 'Build'
                 echo 'Test'
                 unstash 'data'
-                sh "ls"
                 script {                
-                myVar = readFile("${env.BUILD_ID}.txt")
+                myVar = readFile("/opt/jenkins/workspace/Kubernetes-DevOps/stash/${env.BUILD_ID}.txt")
                 }
                 echo "${myVar}"
             }
