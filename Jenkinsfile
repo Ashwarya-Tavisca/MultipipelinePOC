@@ -8,7 +8,9 @@ pipeline {
                 echo 'Test' 
                 sh "echo ${env.BUILD_ID} > ${env.WORKSPACE}/myfile.txt"
                 echo "${env.WORKSPACE}"
-                files = findFiles(glob: '*.*')
+                script {
+                    files = findFiles(glob: '*.*')
+                }
                 echo "${Files}"
                 stash allowEmpty: true, includes: "${env.WORKSPACE}/myfile.txt", name: "data"                 
                 script {
