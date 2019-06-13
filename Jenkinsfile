@@ -24,6 +24,7 @@ pipeline {
         }
         stage($RELEASE_ENVIRONMENT) {          
             steps {
+                script {
                 if($RELEASE_ENVIRONMENT == 'Build' || $RELEASE_ENVIRONMENT == 'QA') {
                     echo "BUILD OR QA"                    
                 }
@@ -33,6 +34,7 @@ pipeline {
                 else if ($RELEASE_ENVIRONMENT == 'Prod')   {
                      echo "Prod"  
                 }
+             }
             }
         } 
               
