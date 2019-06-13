@@ -19,7 +19,7 @@ pipeline {
     stages {     
         stage('Build') {
             when {                
-                expression { ${params.RELEASE_ENVIRONMENT} == 'Build' }
+                expression { "${params.RELEASE_ENVIRONMENT}" == 'Build' }
             }
             steps {
                 echo "Build"
@@ -27,7 +27,7 @@ pipeline {
         }
          stage('QA') {
             when {                
-                expression { ${params.RELEASE_ENVIRONMENT} == 'QA' }
+                expression { "${params.RELEASE_ENVIRONMENT}" == 'QA' }
             }
             steps {
                 echo "QA"
@@ -35,15 +35,15 @@ pipeline {
         }
          stage('Stage') {
             when {                
-                expression { ${params.RELEASE_ENVIRONMENT} == 'Stage' }
+                expression { "${params.RELEASE_ENVIRONMENT}" == 'Stage' }
             }
             steps {
                 echo "Stage"
             }
         }
-        stage("Deploy") {   
+        stage('Prod') {   
             when {                
-                expression { ${params.RELEASE_ENVIRONMENT} == 'Prod' }
+                expression { "${params.RELEASE_ENVIRONMENT}" == 'Prod' }
             }
             steps {
                 echo "Prod"
