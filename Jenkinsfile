@@ -22,7 +22,7 @@ pipeline {
                 echo "Build"
             }
         }
-        stage(' ${RELEASE_ENVIRONMENT}') {          
+        stage( ${params.RELEASE_ENVIRONMENT}) {          
             steps {
                 script {
                 if(${params.RELEASE_ENVIRONMENT} == 'Build' || ${params.RELEASE_ENVIRONMENT} == 'QA') {
