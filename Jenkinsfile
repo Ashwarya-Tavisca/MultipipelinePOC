@@ -13,6 +13,6 @@ pipeline {
               
     }
 }
-def version() {
+def check() {
  return true;
 }
