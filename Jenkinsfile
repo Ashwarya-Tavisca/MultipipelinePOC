@@ -22,16 +22,16 @@ pipeline {
                 echo "Build"
             }
         }
-        stage( ${params.RELEASE_ENVIRONMENT}) {          
+        stage( "${params.RELEASE_ENVIRONMENT}") {          
             steps {
                 script {
-                if(${params.RELEASE_ENVIRONMENT} == 'Build' || ${params.RELEASE_ENVIRONMENT} == 'QA') {
+                if("${params.RELEASE_ENVIRONMENT}" == 'Build' || "${params.RELEASE_ENVIRONMENT}" == 'QA') {
                     echo "BUILD OR QA"                    
                 }
-                else if (${params.RELEASE_ENVIRONMENT} == 'Stage')  {                
+                else if ("${params.RELEASE_ENVIRONMENT}" == 'Stage')  {                
                     echo "Stage"
                 }
-                else if (${params.RELEASE_ENVIRONMENT} == 'Prod')   {
+                else if ("${params.RELEASE_ENVIRONMENT}" == 'Prod')   {
                      echo "Prod"  
                 }
              }
