@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             when {
-                expression { check ("Hey") }
+                expression { check ("Hello") }
             }
             steps {
                 echo "Hello"
