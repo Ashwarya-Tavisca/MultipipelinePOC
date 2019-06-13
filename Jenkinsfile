@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             when {
-                expression { check () }
+                expression { check ("Hey") }
             }
             steps {
                 echo "Hello"
@@ -13,6 +13,9 @@ pipeline {
               
     }
 }
-def check() {
- return true;
+def check(text) {
+    if(text == "Hey")
+        return true;
+    else
+        return false;   
 }
