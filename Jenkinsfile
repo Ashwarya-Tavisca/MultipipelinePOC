@@ -24,6 +24,12 @@ pipeline {
                 echo "${params.RELEASE_ENVIRONMENT}"
                 }
         }
+        if (${params.RELEASE_ENVIRONMENT}) {
+        i = "${params.RELEASE_ENVIRONMENT}"
+       stage("Stage ${i}") {
+            echo "This is ${i}"
+        }
+    }
         stage("${env.BUILD_ID}.tostring()") {          
              steps {
                  echo "${params.RELEASE_ENVIRONMENT}"
