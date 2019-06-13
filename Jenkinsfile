@@ -21,36 +21,36 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Build"
-                echo "${params.RELEASE_ENVIRONMENT}"
-                }
+            }
         }
-    //     if (${params.RELEASE_ENVIRONMENT}) {
-    //     i = "${params.RELEASE_ENVIRONMENT}"
-    //    stage("Stage ${i}") {
-    //         echo "This is ${i}"
-    //     }
-    for (int i = 0; i < 5; i++) {
-        stage("Stage ${i}") {
-            echo "This is ${i}"
-        }
+        stage("DEPLOY") {   
+            when {                
+                expression { ${params.RELEASE_ENVIRONMENT} == 'Build' }
+            }
+            steps {
+                echo "Build"
+            }
+            when {                
+                expression { ${params.RELEASE_ENVIRONMENT} == 'QA' }
+            }
+            steps {
+                echo "QA"
+            }
+            when {                
+                expression { ${params.RELEASE_ENVIRONMENT} == 'Stage' }
+            }
+            steps {
+                echo "Stage"
+            }
+            when {                
+                expression { ${params.RELEASE_ENVIRONMENT} == 'Prod' }
+            }
+            steps {
+                echo "Prod"
+            }
+        }       
+             
     }
-    }
-        stage("${env.BUILD_ID}.tostring()") {          
-             steps {
-                 echo "${params.RELEASE_ENVIRONMENT}"
-                 script {
-                 if("${params.RELEASE_ENVIRONMENT}" == 'Build' || "${params.RELEASE_ENVIRONMENT}" == 'QA') {
-                     echo "BUILD OR QA"                    
-                 }
-                else if ("${params.RELEASE_ENVIRONMENT}" == 'Stage')  {                
-                    echo "Stage"
-                }
-                else if ("${params.RELEASE_ENVIRONMENT}" == 'Prod')   {
-                     echo "Prod"  
-                }
-              }
-             }
-         } 
+} 
               
-    }
-}
+
