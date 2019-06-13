@@ -17,7 +17,9 @@ pipeline {
     }
 
     stages {
-        RELEASE_ENVIRONMENT1 = "${params.RELEASE_ENVIRONMENT}"
+         script {
+                RELEASE_ENVIRONMENT1 = "${params.RELEASE_ENVIRONMENT}"
+             } 
         stage('Build') {
             steps {
                 echo "Build"
@@ -28,10 +30,11 @@ pipeline {
                 echo "${RELEASE_ENVIRONMENT1}"
             }
         }
-        stage("${RELEASE_ENVIRONMENT1}") {          
+        stage('Deploy') {          
              steps {
+                 echo "${params.RELEASE_ENVIRONMENT}"
                  script {
-                 if("${RELEASE_ENVIRONMENT1}" == 'Build' || "${params.RELEASE_ENVIRONMENT}" == 'QA') {
+                 if("${params.RELEASE_ENVIRONMENT}" == 'Build' || "${params.RELEASE_ENVIRONMENT}" == 'QA') {
                      echo "BUILD OR QA"                    
                  }
         //         else if ("${params.RELEASE_ENVIRONMENT}" == 'Stage')  {                
