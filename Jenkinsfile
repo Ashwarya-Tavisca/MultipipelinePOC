@@ -24,7 +24,7 @@ pipeline {
                 echo "${params.RELEASE_ENVIRONMENT}"
                 }
         }
-        stage('''${env.BUILD_ID}''') {          
+        stage("${env.BUILD_ID}.tostring()") {          
              steps {
                  echo "${params.RELEASE_ENVIRONMENT}"
                  script {
