@@ -1,21 +1,40 @@
 pipeline {
     agent any
+     parameters {
+        string (
+            defaultValue: '',
+            description: '',
+            name : 'JIRA_CARD')            
+        string (
+            defaultValue: '',
+            description: '',
+            name : 'REPO_NAME'
+        )
+        choice(
+        name: 'RELEASE_ENVIRONMENT',
+        choices: "Build\nQA\nStage\nProd",
+        description: '' )      
+    }
 
     stages {
         stage('Build') {
-            when {
-                expression { VerifyJiraCard ("Hello") }
-            }
             steps {
-                echo "Hello"
+                echo "Build"
+            }
+        }
+        stage($RELEASE_ENVIRONMENT) {          
+            steps {
+                if($RELEASE_ENVIRONMENT == 'Build' || $RELEASE_ENVIRONMENT == 'QA') {
+                    echo "BUILD OR QA"                    
+                }
+                else if ($RELEASE_ENVIRONMENT == 'Stage')  {                
+                    echo "Stage"
+                }
+                else if ($RELEASE_ENVIRONMENT == 'Prod')   {
+                     echo "Prod"  
+                }
             }
         } 
               
     }
-}
-def VerifyJiraCard(text) {
-    if(text == "Hey")
-        return true;
-    else
-        return false;   
 }
