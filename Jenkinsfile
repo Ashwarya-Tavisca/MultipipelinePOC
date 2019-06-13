@@ -16,39 +16,39 @@ pipeline {
         description: '' )      
     }
 
-    stages {
-     
+    stages {     
         stage('Build') {
-            steps {
-                echo "Build"
-            }
-        }
-        stage("DEPLOY") {   
             when {                
                 expression { ${params.RELEASE_ENVIRONMENT} == 'Build' }
             }
             steps {
                 echo "Build"
             }
+        }
+         stage('QA') {
             when {                
                 expression { ${params.RELEASE_ENVIRONMENT} == 'QA' }
             }
             steps {
                 echo "QA"
             }
+        }
+         stage('Stage') {
             when {                
                 expression { ${params.RELEASE_ENVIRONMENT} == 'Stage' }
             }
             steps {
                 echo "Stage"
             }
+        }
+        stage("Deploy") {   
             when {                
                 expression { ${params.RELEASE_ENVIRONMENT} == 'Prod' }
             }
             steps {
                 echo "Prod"
             }
-        }       
+        } 
              
     }
 } 
