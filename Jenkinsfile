@@ -23,7 +23,7 @@ pipeline {
             }
             steps {
                 echo "Build"
-                build job: 'test-job', parameters: [string(name: 'num1', value: '1'), string(name: 'num2', value: '1')]
+                build job: 'test-job', parameters: [string(name: 'num1', value: '1'), string(name: 'num2', value: '2')]
             }
         }
          stage('QA') {
