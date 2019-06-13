@@ -24,7 +24,7 @@ pipeline {
                 echo "${params.RELEASE_ENVIRONMENT}"
                 }
         }
-        stage("'String adder'{""+${env.BUILD_ID}.toString()}") {          
+        stage("'String adder'{${env.BUILD_ID}.toString()}") {          
              steps {
                  echo "${params.RELEASE_ENVIRONMENT}"
                  script {
