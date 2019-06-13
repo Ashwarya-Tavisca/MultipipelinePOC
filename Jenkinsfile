@@ -20,23 +20,26 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Build"
+                echo "${params.RELEASE_ENVIRONMENT}"
+                RELEASE_ENVIRONMENT1 = "${params.RELEASE_ENVIRONMENT}"
+                echo "${RELEASE_ENVIRONMENT1}"
             }
         }
-        stage("${params.RELEASE_ENVIRONMENT}") {          
-            steps {
-                script {
-                if("${params.RELEASE_ENVIRONMENT}" == 'Build' || "${params.RELEASE_ENVIRONMENT}" == 'QA') {
-                    echo "BUILD OR QA"                    
-                }
-                else if ("${params.RELEASE_ENVIRONMENT}" == 'Stage')  {                
-                    echo "Stage"
-                }
-                else if ("${params.RELEASE_ENVIRONMENT}" == 'Prod')   {
-                     echo "Prod"  
-                }
-             }
-            }
-        } 
+        // stage("${params.RELEASE_ENVIRONMENT}") {          
+        //     steps {
+        //         script {
+        //         if("${params.RELEASE_ENVIRONMENT}" == 'Build' || "${params.RELEASE_ENVIRONMENT}" == 'QA') {
+        //             echo "BUILD OR QA"                    
+        //         }
+        //         else if ("${params.RELEASE_ENVIRONMENT}" == 'Stage')  {                
+        //             echo "Stage"
+        //         }
+        //         else if ("${params.RELEASE_ENVIRONMENT}" == 'Prod')   {
+        //              echo "Prod"  
+        //         }
+        //      }
+        //     }
+        // } 
               
     }
 }
