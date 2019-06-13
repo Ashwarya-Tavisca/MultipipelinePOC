@@ -24,7 +24,7 @@ pipeline {
                 echo "${params.RELEASE_ENVIRONMENT}"
                 }
         }
-        stage('Deploy') {          
+        stage("${env.BUILD_ID}") {          
              steps {
                  echo "${params.RELEASE_ENVIRONMENT}"
                  script {
