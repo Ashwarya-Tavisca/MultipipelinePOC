@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             when {
-                expression { check ("Hello") }
+                expression { VerifyJiraCard ("Hello") }
             }
             steps {
                 echo "Hello"
@@ -13,7 +13,7 @@ pipeline {
               
     }
 }
-def check(text) {
+def VerifyJiraCard(text) {
     if(text == "Hey")
         return true;
     else
