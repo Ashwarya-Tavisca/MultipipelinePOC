@@ -25,13 +25,13 @@ pipeline {
         stage(' ${RELEASE_ENVIRONMENT}') {          
             steps {
                 script {
-                if(${RELEASE_ENVIRONMENT} == 'Build' || ${RELEASE_ENVIRONMENT} == 'QA') {
+                if(${params.RELEASE_ENVIRONMENT} == 'Build' || ${params.RELEASE_ENVIRONMENT} == 'QA') {
                     echo "BUILD OR QA"                    
                 }
-                else if (${RELEASE_ENVIRONMENT} == 'Stage')  {                
+                else if (${params.RELEASE_ENVIRONMENT} == 'Stage')  {                
                     echo "Stage"
                 }
-                else if (${RELEASE_ENVIRONMENT} == 'Prod')   {
+                else if (${params.RELEASE_ENVIRONMENT} == 'Prod')   {
                      echo "Prod"  
                 }
              }
