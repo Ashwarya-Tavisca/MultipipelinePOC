@@ -37,12 +37,12 @@ pipeline {
                  if("${params.RELEASE_ENVIRONMENT}" == 'Build' || "${params.RELEASE_ENVIRONMENT}" == 'QA') {
                      echo "BUILD OR QA"                    
                  }
-        //         else if ("${params.RELEASE_ENVIRONMENT}" == 'Stage')  {                
-        //             echo "Stage"
-        //         }
-        //         else if ("${params.RELEASE_ENVIRONMENT}" == 'Prod')   {
-        //              echo "Prod"  
-        //         }
+                else if ("${params.RELEASE_ENVIRONMENT}" == 'Stage')  {                
+                    echo "Stage"
+                }
+                else if ("${params.RELEASE_ENVIRONMENT}" == 'Prod')   {
+                     echo "Prod"  
+                }
               }
              }
          } 
