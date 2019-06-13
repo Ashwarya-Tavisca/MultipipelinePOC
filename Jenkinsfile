@@ -17,18 +17,12 @@ pipeline {
     }
 
     stages {
-         script {
-                RELEASE_ENVIRONMENT1 = "${params.RELEASE_ENVIRONMENT}"
-             } 
+     
         stage('Build') {
             steps {
                 echo "Build"
                 echo "${params.RELEASE_ENVIRONMENT}"
-                   script {
-                RELEASE_ENVIRONMENT1 = "${params.RELEASE_ENVIRONMENT}"
-                   }
-                echo "${RELEASE_ENVIRONMENT1}"
-            }
+                }
         }
         stage('Deploy') {          
              steps {
